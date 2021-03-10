@@ -50,16 +50,30 @@ func (ls *LocationsStore) Create(l *photohistory.Location) (*photohistory.Locati
 
 // Update a location
 func (ls *LocationsStore) Update(l *photohistory.Location) error {
+	q := `UPDATE locations
+			SET (id, alias, name, latitude, longitude, elevation)
+			VALUE (UUID_TO_BIN(UUID()), :alias, :name, :latitude, :longitude, :elevation)`
+	_, err := ls.db.NamedExec(q, l)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
 // Get a single location
 func (ls *LocationsStore) Get(id uuid.UUID) (*photohistory.Location, error) {
-	return nil, nil
+	var l photohistory.Location
+	if err := ls.db.Get(&l, `SELECT * FROM locations WHERE id = $1`, id); err != nil {
+		return nil, err
+	}
+	return l, nil
 }
 
 // Delete a location
 func (ls *LocationsStore) Delete(id uuid.UUID) error {
+	if _, err := ls.db.Exec(`DELETE FROM locations WHERE id = $1`, id); err != nil {
+		return err
+	}
 	return nil
 }
 
