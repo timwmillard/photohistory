@@ -1,6 +1,8 @@
 package photohistory
 
 import (
+	"errors"
+
 	"github.com/google/uuid"
 )
 
@@ -23,3 +25,8 @@ type LocationStore interface {
 	Delete(id uuid.UUID) error
 	// NearbyLocation(p *Location, radiusKm float32) ([]Location, error)
 }
+
+// Common Errors
+var (
+	ErrLocationNotFound = errors.New("location not found")
+)
