@@ -6,6 +6,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// Photo of the location
 type Photo struct {
 	ID          uuid.UUID `db:"id" json:"id"`
 	TimeTaken   time.Time `db:"time_taken" json:"time_taken"`

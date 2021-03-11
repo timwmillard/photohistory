@@ -4,7 +4,7 @@ import (
 	"github.com/google/uuid"
 )
 
-// Location -
+// Location were photos can be taken
 type Location struct {
 	ID        uuid.UUID `db:"id" json:"id"`
 	Alias     string    `db:"alias" json:"alias"`
@@ -14,6 +14,7 @@ type Location struct {
 	Elevation float64   `db:"elevation" json:"elevation"`
 }
 
+// LocationStore is to store locations
 type LocationStore interface {
 	List() ([]*Location, error)
 	Create(l *Location) (*Location, error)
