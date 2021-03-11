@@ -4,13 +4,14 @@ import (
 	"github.com/google/uuid"
 )
 
+// Location -
 type Location struct {
-	ID        uuid.UUID `db:"id",json:"id"`
-	Alias     string    `db:"alias",json:"alias"`
-	Name      string    `db:"name",json:name"`
-	Latitude  float64   `db:"latitude",json:"latitude"`
-	Longitude float64   `db:"longitude",json:"longitude"`
-	Elevation float64   `db:"elevation",json:"elevation"`
+	ID        uuid.UUID `db:"id" json:"id"`
+	Alias     string    `db:"alias" json:"alias"`
+	Name      string    `db:"name" json:"name"`
+	Latitude  float64   `db:"latitude" json:"latitude"`
+	Longitude float64   `db:"longitude" json:"longitude"`
+	Elevation float64   `db:"elevation" json:"elevation"`
 }
 
 type LocationStore interface {
