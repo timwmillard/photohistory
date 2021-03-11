@@ -15,7 +15,7 @@ CREATE TABLE photos (
    time_taken timestamp WITH TIME ZONE,
    location_id uuid REFERENCES locations (id),
    url varchar(255),
-   submitted_by varchar(255)
+   submitted_by varchar(255),
    latitude decimal,
    longitude decimal,
    elevation decimal
