@@ -17,7 +17,7 @@ type Location struct {
 type LocationStore interface {
 	List() ([]*Location, error)
 	Create(l *Location) (*Location, error)
-	Update(l *Location) error
+	Update(id uuid.UUID, l *Location) (*Location, error)
 	Get(id uuid.UUID) (*Location, error)
 	Delete(id uuid.UUID) error
 	// NearbyLocation(p *Location, radiusKm float32) ([]Location, error)
