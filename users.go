@@ -1,6 +1,8 @@
 package photohistory
 
 import (
+	"errors"
+
 	"github.com/google/uuid"
 )
 
@@ -13,3 +15,8 @@ type User struct {
 	Email     string    `db:"email" json:"email"`
 	Phone     string    `db:"phone" json:"phone"`
 }
+
+// Common Errors
+var (
+	ErrUserNotFound = errors.New("user not found")
+)
