@@ -52,7 +52,7 @@ func (ls *LocationsStore) Create(l *photohistory.Location) (*photohistory.Locati
 func (ls *LocationsStore) Update(l *photohistory.Location) error {
 	q := `UPDATE locations
 			SET (id, alias, name, latitude, longitude, elevation)
-			VALUE (UUID_TO_BIN(UUID()), :alias, :name, :latitude, :longitude, :elevation)`
+			VALUE :id, :alias, :name, :latitude, :longitude, :elevation)`
 	_, err := ls.db.NamedExec(q, l)
 	if err != nil {
 		return err
