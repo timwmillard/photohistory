@@ -17,7 +17,7 @@ type Location struct {
 }
 
 // LocationStore is to store locations
-type LocationStore interface {
+type LocationsStore interface {
 	List() ([]*Location, error)
 	Create(l *Location) (*Location, error)
 	Update(id uuid.UUID, l *Location) (*Location, error)
