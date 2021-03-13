@@ -17,14 +17,18 @@ type LocationsStore struct {
 
 // List all locations
 func (ls *LocationsStore) List() ([]*photohistory.Location, error) {
-	return nil, nil
+	var l photohistory.Location
+	if err := ls.db.Get(&l, `SELECT * FROM locations`); err != nil {
+		return nil, err
+	}
+	return l, nil
 }
 
-// Create a singel location
+// Create a single location
 func (ls *LocationsStore) Create(l *photohistory.Location) (*photohistory.Location, error) {
 	q := `INSERT INTO locations
 			(id, alias, name, latitude, longitude, elevation)
-			VALUE (UUID_TO_BIN(UUID()), :alias, :name, :latitude, :longitude, :elevation)`
+			VALUE (UUID_TO_BIN(UUID()), :alias, :name, :latitude, :longitude, :elevation`
 	result, err := ls.db.NamedExec(q, l)
 	if err != nil {
 		return nil, err

@@ -1,6 +1,7 @@
 package photohistory
 
 import (
+	"errors"
 	"time"
 
 	"github.com/google/uuid"
@@ -17,3 +18,17 @@ type Photo struct {
 	Longitude   float64   `db:"longitude" json:"longitude"`
 	Elevation   float64   `db:"elevation" json:"elevation"`
 }
+
+// PhotosStore is to store photos
+type PhotosStore interface {
+	List() ([]*Location, error)
+	Create(l *Location) (*Location, error)
+	Update(id uuid.UUID, l *Location) (*Location, error)
+	Get(id uuid.UUID) (*Location, error)
+	Delete(id uuid.UUID) error
+}
+
+// Common Errors
+var (
+	ErrPhotoNotFound = errors.New("photo not found")
+)
