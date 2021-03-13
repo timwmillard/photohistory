@@ -28,7 +28,7 @@ func (ls *LocationsStore) List() ([]*photohistory.Location, error) {
 func (ls *LocationsStore) Create(l *photohistory.Location) (*photohistory.Location, error) {
 	q := `INSERT INTO locations
 			(id, alias, name, latitude, longitude, elevation)
-			VALUE (UUID_TO_BIN(UUID()), :alias, :name, :latitude, :longitude, :elevation)`
+			VALUE (UUID_TO_BIN(UUID()), :alias, :name, :latitude, :longitude, :elevation`
 	result, err := ls.db.NamedExec(q, l)
 	if err != nil {
 		return nil, err
